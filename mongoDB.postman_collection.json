@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "7eafaf2b-88ab-4d76-ba7c-20bf9c075b6d",
+		"name": "mongoDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26922134"
+	},
+	"item": [
+		{
+			"name": "Create-certificate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "CertID",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3330",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3330"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3330/download?CertID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3330",
+					"path": [
+						"download"
+					],
+					"query": [
+						{
+							"key": "CertID",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Hash",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3330/gethash?CertID",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3330",
+					"path": [
+						"gethash"
+					],
+					"query": [
+						{
+							"key": "CertID",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

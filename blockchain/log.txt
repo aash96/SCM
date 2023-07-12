@@ -1,0 +1,2 @@
+Installed chaincodes on peer:
+Package ID: fabsc_1:6aeb0c58b8d23777af82c868260348b5131298e089ebe13c206a2180d16d1396, Label: fabsc_1

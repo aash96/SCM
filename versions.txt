@@ -1,0 +1,9 @@
+node --version v10.19.0
+Docker version 23.0.1, build a5ee5b1
+go version go1.13.8 linux/amd64
+Fabric Version: 2.1.1
+MongoDB: Atlas is being used: Credentials URL
+	"mongodb+srv://dbuser1:dbpass@cluster0.sywgrvm.mongodb.net/?retryWrites=true&w=majority"
+mysql  Ver 8.0.32-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))
+
+

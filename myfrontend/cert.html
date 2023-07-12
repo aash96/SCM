@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SCM New Cert</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+        
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body style="background-color: bisque;">
+      
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">SCM</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./newsc.html">Create Supply Chain</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./newuser.html">Create New User</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./cert.html">Create Certificate</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./verify.html">Download Certificate</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    
+        <hr style="border: 1px solid #00a2e8;">
+        
+        <form class="row g-3 px-5">
+          <div class="col-md-12">
+              <label for="certNumber" class="form-label">Shipment ID</label>
+              <input type="text" name="shipment_id" class="form-control" id="shipmentid">
+          </div>
+          <div class="row g-3" id="fields">
+
+          </div>
+          <div class="col-md-12 align-right mt-3"><button type="button" class="btn btn-light" onclick="addrow()">+ Add Fields</button></div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-light">Submit</button>
+          </div>
+      </form>
+      <div class="px-5 g-3 col-md-12">
+          <label for="formFile">Upload Certificate</label>
+          <input class="mx-3" name="document" type="file" id="uploadFile">
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+
+        //dynamically add rows as users needs
+          function addrow(){
+              const fdiv = document.querySelector('#fields');
+              console.log(fdiv.childElementCount);
+              const el=document.createElement('div');
+              const in1=document.createElement('input');
+              in1.classList.add("form-control","col-md-6");
+              in1.setAttribute("type" ,"text");     
+              in1.setAttribute("placeholder","key");
+              in1.setAttribute("name","key"+fdiv.childElementCount); 
+              const in2=document.createElement('input');
+              in2.classList.add("form-control","col-md-6");
+              in2.setAttribute("type" ,"text");     
+              in2.setAttribute("placeholder","value");
+              in2.setAttribute("name","value"+fdiv.childElementCount);                  
+              el.appendChild(in1);
+              el.appendChild(in2);
+              fdiv.appendChild(el);
+          }
+
+          const el = document.querySelector('form');
+
+          //send request to mysql server(backend) along with auth  token
+          el.addEventListener('submit', event => {
+              event.preventDefault();
+
+              const formdata = new FormData(el);
+              console.log(formdata);
+              formdata.append("file",document.querySelector('#uploadFile').files[0]); //note key is file(used by multer in backend)
+
+              let tok=sessionStorage.getItem("bearertok");
+
+              if(tok)
+              {
+                var myHeaders = new Headers();
+                //myHeaders.append("Content-Type", "application/json"); don't include this for automatic calculation of boundary
+                myHeaders.append("Authorization","Bearer "+tok);
+
+                fetch("http://localhost:3000/api/create-certificate", {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata
+                })
+                .then((res) => res.json())
+                .then(data => {if(data.CertID) {alert("Certificate Created with ID "+data.CertID);window.location.href = "./cert.html";}})
+                .catch((err) => ("Error occured", err));
+              }
+              
+          })
+          
+      </script>
+        
+    </body>
+</html>

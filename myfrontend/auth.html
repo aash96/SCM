@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCM Auth</title>
+
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;;
+  }
+  
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .container
+  {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: red;
+    background: linear-gradient(to bottom, rgb(6, 108, 100),  rgb(14, 48, 122));
+    width: 800px;
+    height: 400px;
+    margin: 10% auto;;
+    border-radius: 5px;
+  }
+  
+  .content-holder
+  {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    margin-top: 15%;
+    padding: 50px;
+  }
+  
+  .content-holder h2
+  {
+    font-size: 34px;
+    margin: 20px auto;
+  }
+  
+  .content-holder p
+  {
+    margin: 30px auto;
+  }
+  
+  .content-holder button
+  {
+    border:none;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: white;
+    width: 150px;
+    margin: 20px auto;
+  }
+  
+  
+  .box-2{
+    background-color: white;
+  
+    margin: 5px;
+  }
+  
+  .login-form-container
+  {
+    text-align: center;
+    margin-top: 10%;
+  
+  }
+  
+  .login-form-container h1
+  {
+    color: black;
+    font-size: 24px;
+    padding: 20px;
+  }
+  
+  .input-field
+  {
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgb(168, 168, 168);
+    width: 250px;
+    outline: none;
+  }
+  
+  .login-button{
+    box-sizing: border-box;
+    color: white;
+    font-size: 14px;
+    padding: 13px;
+    border-radius: 7px;
+    border: none;
+    width: 250px;
+    outline: none;
+    background-color: rgb(56, 102, 189);
+  }
+  
+  
+  
+  .button-2
+  {
+    display: none;
+  }
+  
+  
+  
+  
+  
+  .signup-form-container
+  {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    text-align: center;
+    display: none;
+  }
+  
+  
+  .signup-form-container h1
+  {
+    color: black;
+    font-size: 24px;
+    padding: 20px;
+  }
+  
+  .signup-button{
+    box-sizing: border-box;
+    color: white;
+    font-size: 14px;
+    padding: 13px;
+    border-radius: 7px;
+    border: none;
+    width: 250px;
+    outline: none;
+    background-color: rgb(56, 189, 149);  
+  }
+  .login-button:hover
+  {
+    
+    background-color: rgb(56, 140, 210);
+    color: white;
+  }
+  .signup-button:hover
+  {
+
+    background-color: rgb(60, 200, 180);
+    color: white;
+  }
+    </style>
+</head>
+
+<body style="background-color: bisque;">
+    <div class="container">
+        <!--Data or Content-->
+        <div class="box-1">
+            <div class="content-holder">
+                <h2>Hello!</h2>
+               
+                <button class="button-1" onclick="signup()">Sign up</button>
+                <button class="button-2" onclick="login()">Login</button>
+            </div>
+        </div>
+  
+        
+        <!--Forms-->
+        <div class="box-2">
+            <div class="login-form-container">
+                <h1>Login Form</h1>
+                <form name="myForm">
+                    <input name="username" type="text" placeholder="Username" class="input-field">
+                    <br><br>
+                    <input name="password" type="password" placeholder="Password" class="input-field">
+                    <br><br>
+                    <input class="login-button" type="submit" value="Log In">
+                </form>
+            </div>
+  
+  
+  <!--Create Container for Signup form-->
+        <div class="signup-form-container">
+            <h1>Sign Up Form</h1>
+            <form name= "myform">
+                <input name="username"type="text" placeholder="Username" class="input-field">
+                <br><br>
+                <input name="email" type="email" placeholder="Email" class="input-field">
+                <br><br>
+                <input name="password" type="password" placeholder="Create Password" class="input-field">
+                <br><br>
+                <input name="password_repeat" type="password" placeholder="Confirm Password" class="input-field">
+                <br><br>
+                <input class="signup-button" type="submit" value="Sign Up">
+            </form>
+        
+        </div>
+  
+  
+  
+        </div>
+<script>
+    function signup()
+    {
+        document.querySelector(".login-form-container").style.cssText = "display: none;";
+        document.querySelector(".signup-form-container").style.cssText = "display: block;";
+        document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(56, 189, 149),  rgb(28, 139, 106));";
+        document.querySelector(".button-1").style.cssText = "display: none";
+        document.querySelector(".button-2").style.cssText = "display: block";
+
+    };
+
+    function login()
+    {
+        document.querySelector(".signup-form-container").style.cssText = "display: none;";
+        document.querySelector(".login-form-container").style.cssText = "display: block;";
+        document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
+        document.querySelector(".button-2").style.cssText = "display: none";
+        document.querySelector(".button-1").style.cssText = "display: block";
+
+    };
+
+    document.forms["myForm"].onsubmit = function validateForm(e) {
+        e.preventDefault();
+        var x = document.forms["myForm"]["username"].value;
+        var y = document.forms["myForm"]["password"].value;
+        if (x == "" || y=="") {
+        alert("Please fill out all the fields");
+        return false;
+        }
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+       
+        var raw = JSON.stringify({
+        "username": x,
+        "password": y
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw
+        };
+
+        fetch("http://localhost:3000/api/login", requestOptions)
+        .then(response => response.json())
+        .then(result => {if(result.status){sessionStorage.setItem("bearertok",result["token"]);window.location.href = "./dashboard.html"; return true;}
+        else{alert("Try Again");return false;}})
+        .catch(error => console.log('error', error));
+    }
+
+    document.forms["myform"].onsubmit = function formF(e) {
+        e.preventDefault();
+        var a = document.forms["myform"]["username"].value;
+        var b = document.forms["myform"]["email"].value;
+        var c = document.forms["myform"]["password"].value;
+        var d = document.forms["myform"]["password_repeat"].value;
+        if (a == "" || b=="" || c=="" || d=="") {
+        alert("Please fill out all the fields");
+        return false;
+        }
+        if(c!=d) 
+        {
+            alert("Passwords do not match!");
+            return false;
+        }
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+       
+        var raw = JSON.stringify({
+        "username": a,
+        "email": b,
+        "password": c,
+        "password_repeat": d
+        });
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw
+        };
+
+        fetch("http://localhost:3000/api/sign-up", requestOptions)
+        .then(response => response.json())
+        .then(result => {if(result.insertId !== undefined){alert("Registered sucessfully, login to continue");window.location.href = "./auth.html"; return true;}
+        else{alert("Try Again");return false;}})
+        .catch(error => console.log('error', error));
+    }  
+</script>    
+</body>
+
+</html>
